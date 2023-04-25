@@ -1,22 +1,26 @@
 package ma.enset.jeetp2.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-@Data @NoArgsConstructor @AllArgsConstructor @Entity
+@Document("patient")
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Patient {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @Id
+  private String id;
+  @Field(name = "name")
   private String name;
-  private Date birth_date;
+  @Field(name = "birth_date")
+  private LocalDate birthDate;
+  @Field(name = "sick")
   private boolean sick;
+  @Field(name = "score")
   private int score;
 
 }
