@@ -11,23 +11,22 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDate;
 import java.util.Collection;
 
-@Document("patient")
-@Data @NoArgsConstructor @AllArgsConstructor
-public class Patient {
+@Document("doctor")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Doctor {
   @Id
   private String id;
   @Field(name = "name")
   private String name;
-  @Field(name = "birth_date")
-  private LocalDate birthDate;
-  @Field(name = "sick")
-  private boolean sick;
-  @Field(name = "score")
-  private int score;
-  @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+  @Field(name = "email")
+  private String email;
+  @Field(name = "speciality")
+  private String speciality;
+  @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Collection<Appointment> appointments;
 }
