@@ -23,7 +23,7 @@ public class Consultation {
   private LocalDate date;
   @Field(name = "report")
   private String report;
-  @OneToOne
+  @DocumentReference
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Appointment appointment;
 }

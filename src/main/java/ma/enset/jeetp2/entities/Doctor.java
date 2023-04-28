@@ -1,8 +1,6 @@
 package ma.enset.jeetp2.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +24,7 @@ public class Doctor {
   private String email;
   @Field(name = "speciality")
   private String speciality;
-  @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
+  @DBRef(lazy = true)
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Collection<Appointment> appointments;
 }

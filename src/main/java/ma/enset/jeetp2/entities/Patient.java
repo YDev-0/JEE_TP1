@@ -27,7 +27,7 @@ public class Patient {
   private boolean sick;
   @Field(name = "score")
   private int score;
-  @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+  @DBRef(lazy = true)
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Collection<Appointment> appointments;
 }

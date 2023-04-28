@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
@@ -23,13 +24,13 @@ public class Appointment {
   private Date date;
   @Field(name = "status")
   private AppointmentStatus status;
-  @ManyToOne
+  @DocumentReference(collection = "patient")
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Patient patient;
-  @ManyToOne
+  @DocumentReference(collection = "doctor")
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Doctor doctor;
-  @OneToOne
+  @DocumentReference
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private Consultation consultation;
 }
