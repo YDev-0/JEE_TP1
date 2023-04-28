@@ -12,6 +12,7 @@ import ma.enset.jeetp2.repos.DoctorRepository;
 import ma.enset.jeetp2.repos.PatientRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -26,16 +27,29 @@ public class IHospitalServiceImpl implements IHospitalService {
   // get data
   @Override
   public List<Patient> getAllPatients() {
-    return m_patientRepos.findAll();
+    List<Patient> patients = m_patientRepos.findAll();
+
+    patients.forEach(p -> {
+      p.setAppointments(m_appointmentRepos.findAllByPatient(p));
+    });
+
+    return patients;
   }
   @Override
   public List<Doctor> getAllDoctors() {
-    return m_doctorRepos.findAll();
+    List<Doctor> doctors = m_doctorRepos.findAll();
+
+    doctors.forEach(d -> {
+      d.setAppointments(m_appointmentRepos.findAllByDoctor(d));
+    });
+
+    return doctors;
   }
   @Override
   public List<Appointment> getAllAppointments() {
     return m_appointmentRepos.findAll();
   }
+
   @Override
   public List<Consultation> getAllConsultations() {
     return m_consultationRepos.findAll();

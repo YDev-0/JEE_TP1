@@ -5,6 +5,7 @@ import ma.enset.jeetp2.entities.Consultation;
 import ma.enset.jeetp2.entities.Doctor;
 import ma.enset.jeetp2.entities.Patient;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IHospitalService {
